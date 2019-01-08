@@ -11,7 +11,7 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    list_display = ['email', 'username']
+    list_display_links = ['last_name', 'first_name', 'email', 'username']
+    readonly_fields = ['last_login', 'date_joined']
 
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.unregister(Group)
