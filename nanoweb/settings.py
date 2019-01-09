@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls.apps.PollsConfig',
     'users.apps.UsersConfig',
+    'facilities.apps.FacilitiesConfig',
     'crispy_forms',
 ]
 
@@ -122,7 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'users.CustomUser'
-LOGIN_REDIRECT_URL = '/users'
-LOGOUT_REDIRECT_URL = '/users'
+LOGIN_REDIRECT_URL = '/facilities'
+LOGOUT_REDIRECT_URL = '/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MEDIA_ROOT = '/user_forms/'

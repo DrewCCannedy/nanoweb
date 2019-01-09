@@ -14,7 +14,7 @@ class SignUpView(CreateView):
 
 
 class IndexView(edit.FormView):
-    success_url = '/users/'
+    success_url = '/facilities'
     form_class = LoginForm
     template_name = 'users/index.html'
 
