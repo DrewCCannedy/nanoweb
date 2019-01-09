@@ -13,10 +13,10 @@ class SignUpView(CreateView):
     template_name = 'users/signup.html'
 
 
-class LoginView(edit.FormView):
-    template_name = 'users/login.html'
-    form_class = LoginForm
+class IndexView(edit.FormView):
     success_url = '/users/'
+    form_class = LoginForm
+    template_name = 'users/index.html'
 
     def form_valid(self, form):
         username = form.cleaned_data['username']
@@ -25,9 +25,3 @@ class LoginView(edit.FormView):
         if user is not None:
             login(self.request, user)
         return super().form_valid(form)
-
-
-class UserListView(ListView):
-    queryset = Users.objects.order_by('-username')
-    context_object_name = 'user_list'
-    template_name = 'users/index.html'

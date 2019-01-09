@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
     'users.apps.UsersConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'nanoweb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'nanoweb/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,3 +124,5 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_REDIRECT_URL = '/users'
 LOGOUT_REDIRECT_URL = '/users'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+MEDIA_ROOT = '/user_forms/'

@@ -20,7 +20,7 @@ admin.site.site_header = 'NanoWeb Admin'
 admin.site.site_title = 'NanoWeb Admin'
 
 urlpatterns = [
+    path('', include('users.urls')),
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
-    path('users/', include('users.urls')),
 ]

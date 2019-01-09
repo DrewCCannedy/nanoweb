@@ -1,28 +1,29 @@
-{% extends 'users/base.html' %}
+{% extends 'nanoweb/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <p><a href="{% url 'users:logout' %}">logout</a></p>
-{% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'users:login' %}">login</a> |
-  <a href="{% url 'users:signup' %}">signup</a>
-{% endif %}
-{% if user_list %}
-<table>
-  <tr>
-    <th>username</th>
-    <th>email</th>
-  </tr>
-{% for user in user_list %}
-  <tr>
-    <td>{{ user.username }}</td>
-    <td>{{ user.email }}</td>
-  </tr>
-{% endfor %}
-</table>
-{% endif %}
+<div class="row">
+  <div class="col">
+    <form method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class='btn btn-primary btn-block'>Login</button>
+      <a href="{% url 'users:signup' %}" class='btn btn-primary btn-block'>Register</a>
+    </form>
+  </div>
+  <div class="col-8">
+    <div class="jumbotron">
+      <h1 class="display-4">Welcome to NanoWeb</h1>
+      <p class="lead">NanoWeb is a central location for equipment communications, reservations, and data storage/collection, available to users of NanoTech Institute facilities.</p>
+      <hr class="my-4">
+      <p>If you have an account, please sign in using the form to the left.</p>
+      <p>If you have not used NanoWeb before, please click the button below for information on how to use our laboratory and equipment.</p>
+      <a class="btn btn-primary btn-md" href="#" role="button">Get Access</a>
+    </div>
+  </div>
+  <div class="col">
+  </div>
+</div>
 {% endblock %}
