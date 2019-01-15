@@ -13,4 +13,4 @@ class CustomUser(AbstractUser):
     training_form = models.FileField(upload_to='training_forms/', blank=True, null=True)
 
     def __str__(self):
-        return self.email
+        return self.first_name + " " + self.last_name

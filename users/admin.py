@@ -22,7 +22,7 @@ class CustomUserAdmin(UserAdmin):
         'cost_center_end_date',
         'last_login',
         'date_joined',
-        ]
+    ]
     list_display_links = ['last_name', 'first_name', 'email']
     readonly_fields = ['last_login', 'date_joined']
     fieldsets = (
@@ -32,6 +32,5 @@ class CustomUserAdmin(UserAdmin):
         ('Forms', {'fields': ('activation_form', 'training_form',)}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'groups')}),
     )
-    
 
 admin.site.register(CustomUser, CustomUserAdmin)

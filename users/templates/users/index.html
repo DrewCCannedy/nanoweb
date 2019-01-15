@@ -4,7 +4,7 @@
 {% block title %}Home{% endblock %}
 
 {% block left %}
-  <form method="post">
+  <form method="post" style="margin-top: 1em">
     {% csrf_token %}
     {{ form|crispy }}
     <button type="submit" class='btn btn-primary btn-block'>Login</button>
