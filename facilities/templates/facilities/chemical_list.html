@@ -1,0 +1,51 @@
+{% extends 'nanoweb/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Home{% endblock %}
+
+{% block left %}
+{% endblock %}
+{% block center %}
+  <div class="jumbotron">
+    <h1 class="display-4">Chemicals</h1>
+    <hr class="my-4">
+    <nav class="navbar navbar-light justify-content-between">
+      <a class="btn btn-primary btn-lg activate" role='button' href="{% url 'facilities:chemical-create' %}">New Chemical</a>
+      <form action="{% url 'facilities:chemical-list' %}" method="get">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+      </form>
+    </nav>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th scope='col'>Name</th>
+            <th scope='col'>CAS</th>
+            <th scope='col'>Cabinet</th>
+            <th scope='col'>Container Size</th>
+            <th scope='col'>Number of Containers</th>
+            <th scope='col'>Company</th>
+            <th scope='col'>Owner</th>
+          </tr>
+        </thead>
+    <tbody>
+    {% for chemical in object_list %}
+      <tr>
+        <td>{{ chemical.name }}</td>
+        <td>{{ chemical.cas }}</td>
+        <td>{{ chemical.cabinet_number }}</td>
+        <td>{{ chemical.container_size }}</td>
+        <td>{{ chemical.number_of_containers }}</td>
+        <td>{{ chemical.company }}</td>
+        <td>{{ chemical.owner }}</td>
+      </tr>
+    {% empty %}
+      <li>No chemicals yet.</li>
+    {% endfor %}
+    </tbody>
+    </table>
+  </div>  
+{% endblock %}
+{% block right %}
+{% endblock %}

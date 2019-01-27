@@ -21,4 +21,6 @@ app_name = 'facilities'
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
+    path('/chemical_inventory/', views.ChemicalList.as_view(), name='chemical-list'),
+    path('/chemical_inventory/chemical_create_form/', views.ChemicalCreate.as_view(), name='chemical-create'),
 ]

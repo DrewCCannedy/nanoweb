@@ -4,26 +4,27 @@
 {% block title %}Home{% endblock %}
 
 {% block left %}
-  <div class="card border-primary" style="margin-top: 5em" >
-    <div class="card-header">
-      <h5>Current User</h5>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{ name }}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Signed In</h6>
-      <a href="{% url 'users:logout' %}" class="card-link">Logout</a>
-    </div>
-  </div>
 {% endblock %}
 {% block center %}
-    <div class="jumbotron">
-      <h1 class="display-4">Welcome to NanoWeb</h1>
-      <p class="lead">NanoWeb is a central location for equipment communications, reservations, and data storage/collection, available to users of NanoTech Institute facilities.</p>
-      <hr class="my-4">
-      <p>If you have an account, please sign in using the form to the left.</p>
-      <p>If you have not used NanoWeb before, please click the button below for information on how to use our laboratory and equipment.</p>
-      <a class="btn btn-primary btn-md" href="#" role="button">Get Access</a>
-    </div>
+  <div class="jumbotron">
+    <h1 class="display-4">Important Updates</h1>
+    <hr class="my-4">
+    {% for message in messages %}
+      <h5>{{ message.author }} <span class="badge badge-secondary">{{ message.format_date }}</span></h4>
+      {% comment %} if low priority, display blue background {% endcomment %}
+      {% if message.importance == "L" %}
+        <div class="alert alert-primary" role="alert">{{ message.text }}</div>
+      {% endif %}
+      {% comment %} if medium priority, display yellow background  {% endcomment %}
+      {% if message.importance == "M" %}
+        <div class="alert alert-warning" role="alert">{{ message.text }}</div>
+      {% endif %}
+      {% comment %} if high priority, display red background  {% endcomment %}
+      {% if message.importance == "H" %}
+        <div class="alert alert-danger" role="alert">{{ message.text }}</div>
+      {% endif %}
+    {% endfor %}
+  </div>
 {% endblock %}
 {% block right %}
 {% endblock %}

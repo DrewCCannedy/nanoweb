@@ -15,4 +15,21 @@ class Message(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.author.__str__() + ' ' + self.created_at.__str__()
+        return self.author.__str__() + ' said ' + self.text
+
+    def format_date(self):
+        return self.created_at.strftime('%I:%M - %m-%d-%Y')
+
+
+class Chemical(models.Model):
+    name = models.CharField(max_length=50)
+    cas = models.CharField(max_length=20)
+    container_size = models.CharField(max_length=20)
+    number_of_containers = models.IntegerField()
+    company = models.CharField(max_length=50)
+    cabinet_number = models.IntegerField()
+    owner = models.CharField(max_length = 50)
+    msds = models.FileField(upload_to='msds/', blank=True, null=True)
+
+    def __str__(self):
+        return self.name + ' ' + self.cas
